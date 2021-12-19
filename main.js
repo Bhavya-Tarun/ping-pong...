@@ -4,14 +4,17 @@ noseY = 0;
 marioX = 325;
 marioY = 325;
 
+function setup(){
+	video=createCapture(VIDEO);
+	video.size(600, 300);
+  
+	poseNet=ml5.poseNet(video, modelLoaded);
+	poseNet.on("pose", gotPoses);
+}
 function preload()
 {
   img = loadImage("racquet.png");
-  video=createCapture(VIDEO);
-  video.size(600, 300);
-
-  poseNet=ml5.poseNet(video, modelLoaded);
-  poseNet.on("pose", gotPoses);
+  
 }
 function modelLoaded(){
 	console.log("model loaded");
